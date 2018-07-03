@@ -1,6 +1,8 @@
 #wrapper{width:1000px;
 margin-left:200px;
-margin-right:200px;}
+margin-right:200px;
+font-family:OCR A Std, monospace;
+}
 
 	
 #Headline{
@@ -9,40 +11,40 @@ background-color:white;
 margin:0px;
 background-color: white;
 
+
 }
 #Titelbild{ 
 height:300px;
-
 margin:0px;}
 a{ color:black;
 }
-#about{padding:100px}
-#contact{padding:100px;}
-#login{padding:100px;}
-#Warenkorb{padding:100px;}
-nav{ 
-height:200px;
-width:100px;
+#about{padding:85px}
+#contact{padding:85px;}
+#login{padding:85px;}
+#Warenkorb{padding:85px;}
+#navigation{ 
+height:1000px;
+width:160px;
 margin:30px;
 position:static;
-
+float: left;
 text-align: center;
 border-style:inset;
-
 }
 #Einträge{ 
-height: 2000px;
-
+height: 1000px;
+width: 700px;
 margin: 0px;
 float:right;
 text-align: center;
 }
 .Eintrag{
-height:200px;
+height:150px;
 text-align: center;
 float:right;
 margin:30px;
 }
+
 		
 
 	
