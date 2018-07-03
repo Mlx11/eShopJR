@@ -2,8 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from flask import Flask, session
-from flask.ext.mysqldb import MySQL
+from flask import Flask, session, render_template, request, url_for
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
@@ -16,36 +16,40 @@ mysql = MySQL(app)
 
 
 @app.route("/shop")
-def shop():
+def shopb():
     return "Template default"
 
 @app.route("/shop/category/<category>")
-def shop():
+def shopc():
     return "Template für Kategorie z.B. CDs"
 
 @app.route("/shop/item/<id>")
-def shop():
+def shopi():
     return "Template für einzelnen Artikel"
 
 @app.route("/shop/warenkorb/")
-def shop():
+def shopw():
     return "Template für Wahrenkorb"
 
+@app.route("/shop/login/")
+def shop():
+    return render_template('login.html')
 
-@app.route('/loginin/', methods=['GET', 'POST'])
+@app.route('/loggedIn', methods=['GET', 'POST'])
 def logingin():
     if request.method == 'POST':
         cursor = mysql.connection.cursor()
-        sql = '''SELECT password FROM mydb.kunde WHERE; 
-                 WHERE username = "''' \
+        sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
                  + request.form['username'] + '"'
         cursor.execute(sql)
         result = cursor.fetchone()
         password = result[0]
         if password == request.form['password']:
             print("loggin correct")
+            return render_template('S1.html')
         else:
             print("nope")
+            return render_template('login.html')
             
             
 def buy(itemID):
@@ -53,5 +57,4 @@ def buy(itemID):
 
 
 if __name__ == "__main__":
-    buy(1)
     app.run(debug=True)
