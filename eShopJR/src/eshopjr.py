@@ -38,14 +38,16 @@ def shop():
 @app.route('/loggedIn', methods=['GET', 'POST'])
 def logingin():
     if request.method == 'POST':
+        name = request.form['username']
         cursor = mysql.connection.cursor()
         sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
-                 + request.form['username'] + '"'
+                 + name + '"'
         cursor.execute(sql)
         result = cursor.fetchone()
         password = result[0]
         if password == request.form['password']:
             print("loggin correct")
+            session['username'] = name
             return render_template('S1.html')
         else:
             print("nope")
@@ -57,4 +59,5 @@ def buy(itemID):
 
 
 if __name__ == "__main__":
+    app.secret_key = 'super secret key'
     app.run(debug=True)
