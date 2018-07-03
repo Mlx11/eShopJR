@@ -14,10 +14,12 @@ height:500px;
 background-color:yellow;
 margin:0px;
 position:static;
+float:left;
 }
 #Einträge{ width:700px;
 height: 500px;
 background-color:red;
 margin: 0px;
+float:left;
 }
 	
