@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title> Login </title>
+		<link rel="stylesheet" href="webshop.css"/>
+							
+		
+	</head>
+	<body>
+		<div id="Headline">
+			<img src="" alt="Logo">
+			<a id= "about" href="url">about</a>
+			<a id= "contact" href="url">contact</a>
+			<a id= "login" href="url">login</a>
+			<a id= "Warenkorb" href="">
+				<img src="" alt="Warenkorbimage" style="width:42px;height:10px;border:0">
+			</a>
+		</div>
+		<div id="Titelbild">
+			<img src="../static/JR.png/" alt="Da sollte ein Bild sein">
+		</div>
+		<div id="Einträge">
+			<form method="POST" action="/loggedIn">
+				<div class="formline" >
+					<label>Username</label>
+					<input type="text" name="username" />
+				</div>
+				<div class="formline" >
+					<label>Password</label>
+					<input type="password" name="pw" />
+				</div>
+				<br />
+				<input type="submit" name="eingabe" value="Login" />
+			</form>
+		</div>
+	</body>
+	
+</html>
