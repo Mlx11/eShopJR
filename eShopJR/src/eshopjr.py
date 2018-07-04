@@ -77,7 +77,7 @@ def buy(id):
         session['warenkorb'] = w
         return render_template("warenkorb.html", articles=session['warenkorb'])
     except:
-        return "Error"
+        return "<h1>You must be logged in to buy</h1><a href='/shop/login'>login</a>"
     
     
 def getArticles():

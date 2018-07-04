@@ -55,10 +55,12 @@ float:right;
 text-align: center;
 }
 .Eintrag{
+width: 180px;
+background-color: black;
 height:150px;
 text-align: center;
 float:right;
-margin:30px;
+margin:20px;
 }
 #Produktbeschreibung{
     width: 700px;
