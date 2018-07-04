@@ -14,7 +14,6 @@ app.config['MYSQL_HOST'] = 'localhost'
 mysql = MySQL(app)
 
 
-
 @app.route("/shop")
 def shopb():
     a = getArticles()
@@ -42,6 +41,7 @@ def shopw():
 @app.route("/shop/login/")
 def shop():
     return render_template('login.html')
+
 
 @app.route('/loggedIn', methods=['GET', 'POST'])
 def logingin():
@@ -86,8 +86,7 @@ def getArticles():
     cursor.execute(sql)        
     result = cursor.fetchall()
     print(result)
-    return result
-    
+    return result[:4]
     
 if __name__ == "__main__":
     app.secret_key = 'super secret key'

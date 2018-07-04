@@ -29,11 +29,13 @@
 				<a id= "single" href="url">Single</a>
 			</div>
 			<div id="Einträge">
+                {% for i in range(10) %}
                 {% for a in articles %}
-				<div id="Eintrag{{a[0]}}}" class="Eintrag"> 
-					<img src="../static/{{a[0]}}.png/" alt="{{a[1]}}" style="width:150px;height:150px;border:175px"> <br />
-					<a id= "Produkt1" href="/shop/item/{{a[0]}}">{{a[1]}}</a>
-				</div>
+                    <div id="Eintrag{{a[0]}}}" class="Eintrag"> 
+                        <img src="../static/{{a[0]}}.png/" alt="{{a[1]}}" style="width:150px;height:150px;border:175px"> <br />
+                        <a id= "Produkt1" href="/shop/item/{{a[0]}}">{{a[1]}}</a>
+                    </div>
+                {% endfor %}
                 {% endfor %}
 			</div>
 		</div>
