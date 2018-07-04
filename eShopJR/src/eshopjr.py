@@ -17,7 +17,7 @@ mysql = MySQL(app)
 
 @app.route("/shop")
 def shopb():
-    return "Template default"
+    return render_template("S1.html")
 
 @app.route("/shop/category/<category>")
 def shopc():
@@ -29,14 +29,15 @@ def shopi(id):
     sql = '''SELECT Name, Interpret FROM mydb.cd Where idCD = "''' \
                 + id + '"'     
     cursor.execute(sql)
-    result = cursor.fetchone()
+    result = cursor.fetchall()
     name = result[0]
     interpret = result[1]
-    return "Template für einzelnen Artikel"
+    return "Template für einzelnen Artikel mit name und interpret"
 
 @app.route("/shop/warenkorb/")
 def shopw():
-    return "Template für Wahrenkorb"
+    #session['warenkorb'] = [[1, 'Kühe machen mühe'],[2, "Hallo Muh"]]
+    return render_template("warenkorb.html", articles=session['warenkorb'])
 
 @app.route("/shop/login/")
 def shop():
@@ -55,14 +56,21 @@ def logingin():
         if password == request.form['password']:
             print("loggin correct")
             session['username'] = name
+            session['warenkorb'] = []
             return render_template('S1.html')
         else:
             print("nope")
             return render_template('login.html')
             
-            
-def buy(itemID):
-    pass
+@app.route('/buy/<id>')           
+def buy(id):
+    cursor = mysql.connection.cursor()
+    sql = '''SELECT Name FROM mydb.cd Where idCD = "''' \
+                + id + '"'     
+    cursor.execute(sql)
+    result = cursor.fetchone()
+    name = result[0]
+    session['warenkorb'].append([id, name])
 
 
 if __name__ == "__main__":
