@@ -21,7 +21,7 @@
 				</a>
 			</div>
 			<div id="Titelbild">
-				<img src="/static/JR.png" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
+				<img src="/static/Frontpage2.jpg" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
 			</div>
 			<div id="navigation">
 				<p> Kategorien </p>
@@ -31,24 +31,29 @@
 			<div id="warenkorb">
                 <table>
                     <tr>
-                        <td><b>ID</b></td>
+                        <td class="iddd"><b>ID</b></td>
                         <td><b>Name</b></td>
                         <td><b>Preis</b></td>
                     </tr>
+                    <tr>
+                        <td class="iddd"> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
                     {% for a in articles %}
                     <tr>
-                        <td>{{a[0]}}</td>
+                        <td class="iddd">{{a[0]}}</td>
                         <td>{{a[1]}}</td>
                         <td>{{a[2]}}</td>
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td> </td>
+                        <td class="iddd"> </td>
                         <td> </td>
                         <td> </td>
                     </tr>
                     <tr>
-                        <td> </td>
+                        <td class="iddd"> </td>
                         <td>Total: </td>
                         <td>{{saldo}}</td>
                     </tr>
