@@ -1,9 +1,15 @@
+body {
+    background-color: #DDDDDD;
+}
+
 #wrapper{width:1000px;
+         height: 5000px;
 margin-left:200px;
 margin-right:200px;
 font-family:OCR A Std, monospace;
 font-style: none;
 text-decoration: none;
+background-color: white;
 }
 
 	
@@ -40,19 +46,20 @@ border-style:solid;
 
 #navigation{ 
 height:1000px;
-width:160px;
+width:200px;
 margin:30px;
 position:static;
 float: left;
 text-align: center;
-border-style:inset;
+border-style:solid;
+background-color: white;
 }
 #Einträge{ 
-height: 1000px;
 width: 700px;
 margin: 0px;
 float:right;
 text-align: center;
+background-color: white;
 }
 .Eintrag{
 width: 180px;

@@ -4,7 +4,7 @@
 		<title> 
 			Achterjan
 		</title>
-		<link rel="stylesheet" href="webshop.css"/>
+		<link rel="stylesheet" href="/static/webshop.css"/>
 		
 							
 		
@@ -12,16 +12,16 @@
 	<body>
 		<div id="wrapper">
 			<div id="Headline">
-				<img src="../static/JR.png/" alt="Logo">
+				<img src="/static/JR.png" alt="Logo">
 				<a id= "about" href="url">about</a>
 				<a id= "contact" href="url">contact</a>
 				<a id= "login" href="url">login</a>
 				<a id= "Warenkorb" href="">
-				<img src="../static/JR.png/" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
+				<img src="/static/JR.png" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
 				</a>
 			</div>
 			<div id="Titelbild">
-				<img src="../static/JR.png/" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
+				<img src="/static/JR.png" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
 			</div>
 			<div id="navigation">
 				<p> Kategorien </p>
@@ -39,10 +39,14 @@
                     <tr>
                         <td>{{a[0]}}</td>
                         <td>{{a[1]}}</td>
-                        <td>1.50</td>
+                        <td>{{a[2]}}</td>
                     </tr>
                     {% endfor %}
-                    
+                    <tr>
+                        <td> </td>
+                        <td></td>
+                        <td>{{saldo}}</td>
+                    </tr>
                 </table>
             </div>
 		</div>

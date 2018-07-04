@@ -4,6 +4,7 @@
 
 from flask import Flask, session, render_template, request, url_for
 from flask_mysqldb import MySQL
+import random
 
 app = Flask(__name__)
 
@@ -36,7 +37,11 @@ def shopi(id):
 @app.route("/shop/warenkorb/")
 def shopw():
     #session['warenkorb'] = [[1, 'Kühe machen mühe'],[2, "Hallo Muh"]]
-    return render_template("warenkorb.html", articles=session['warenkorb'])
+    try:
+        name = session['username']
+        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
+    except:
+        return "<h1>You must be logged in to view this</h1><a href='/shop/login'>login</a>"
 
 @app.route("/shop/login/")
 def shop():
@@ -57,6 +62,7 @@ def logingin():
             print("loggin correct")
             session['username'] = name
             session['warenkorb'] = []
+            session['saldo'] = 0
             a = getArticles()
             return render_template('S1.html', articles=a)
         else:
@@ -72,13 +78,14 @@ def buy(id):
         cursor.execute(sql)
         result = cursor.fetchone()
         name = result[0]
+        price = random.randint(0,10)
         w = session['warenkorb']
-        w.append([id, name])
+        w.append([id, name, price])
         session['warenkorb'] = w
-        return render_template("warenkorb.html", articles=session['warenkorb'])
+        session['saldo'] += price
+        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
     except:
         return "<h1>You must be logged in to buy</h1><a href='/shop/login'>login</a>"
-    
     
 def getArticles():
     cursor = mysql.connection.cursor()
