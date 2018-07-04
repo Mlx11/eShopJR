@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title> 
+			Achterjan
+		</title>
+		<link rel="stylesheet" href="webshop.css"/>
+		
+							
+		
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="Headline">
+				<img src="../static/JR.png/" alt="Logo">
+				<a id= "about" href="url">about</a>
+				<a id= "contact" href="url">contact</a>
+				<a id= "login" href="url">login</a>
+				<a id= "Warenkorb" href="">
+				<img src="../static/JR.png/" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
+				</a>
+			</div>
+			<div id="Titelbild">
+				<img src="../static/JR.png/" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
+			</div>
+			<div id="navigation">
+				<p> Kategorien </p>
+				<a id= "CD" href="url">CD</a> <br />
+				<a id= "single" href="url">Single</a>
+			</div>
+			<div id="warenkorb">
+                <table>
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Preis</b></td>
+                    </tr>
+                    {% for a in articles %}
+                    <tr>
+                        <td>{{a[0]}}</td>
+                        <td>{{a[1]}}</td>
+                        <td>1.50</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </table>
+            </div>
+		</div>
+		
+
+	</body>
+
+</html>
