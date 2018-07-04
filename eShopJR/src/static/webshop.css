@@ -2,6 +2,14 @@ body {
     background-color: #DDDDDD;
 }
 
+#everything{
+width:1000px;
+margin-left:200px;
+margin-right:200px;
+font-family:OCR A Std, monospace;
+font-style: none;
+text-decoration: none;    
+}
 #wrapper{width:1000px;
          height: 5000px;
 margin-left:200px;

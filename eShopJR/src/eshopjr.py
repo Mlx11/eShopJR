@@ -15,6 +15,11 @@ app.config['MYSQL_HOST'] = 'localhost'
 mysql = MySQL(app)
 
 
+
+@app.route("/")
+def front():
+    return render_template('Frontpage.html')
+    
 @app.route("/shop")
 def shopb():
     a = getArticles()
