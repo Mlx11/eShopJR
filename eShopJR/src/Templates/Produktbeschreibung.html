@@ -10,7 +10,7 @@ and open the template in the editor.
 		<title> 
 			Achterjan
 		</title>
-		<link rel="stylesheet" href="webshop.css"/>
+		<link rel="stylesheet" href="/static/webshop.css"/>
 		
 							
 		
@@ -18,16 +18,16 @@ and open the template in the editor.
 	<body>
 		<div id="wrapper">
 			<div id="Headline">
-				<img src="../static/JR.png/" alt="Logo">
+				<img src="/static/JR.png" alt="Logo">
 				<a id= "about" href="url">about</a>
 				<a id= "contact" href="url">contact</a>
 				<a id= "login" href="url">login</a>
 				<a id= "Warenkorb" href="">
-				<img src="../static/JR.png/" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
+				<img src="/static/JR.png" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
 				</a>
 			</div>
             <div id="Titelbild">
-				<img src="../static/JR.png/" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
+				<img src="/static/Frontpage2.jpg" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
 			</div>
 			<div id="navigation">
 				<p> Kategorien </p>
@@ -35,16 +35,17 @@ and open the template in the editor.
 				<a id= "single" href="url">Single</a>
 			</div>
             <div id="Produktbeschreibung">
-                <img src="../static/JR.png/" alt="Produkt1" style="width:150px;height:150px;border:175px">
+                <img src="/static/djIcon.jpg" alt="Produkt1" style="width:150px;height:150px;border:175px">
+                <br />
+                <audio controls autoplay>
+                    <source src="/static/{{idd}}.mp3/" type="audio/mp3"> 
+                   Ihr Browser kennt das HTML5-Element noch nicht. 
+                </audio>
                 <h2> {{name}} </h2>
                 <p> Die CD {{name}} hat die ID {{idd}}<p>
                 <form action="http://127.0.0.1:5000/shop/buy/{{idd}}">
                     <b><input type="submit" value="BUY" /></b>
                 </form>
-                <audio controls autoplay>
-                    <source src="/static/1.mp3/" type="audio/mp3"> 
-                   Ihr Browser kennt das HTML5-Element noch nicht. 
-                </audio>
             </div>
             
         </div>    
