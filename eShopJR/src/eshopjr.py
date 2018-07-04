@@ -24,7 +24,14 @@ def shopc():
     return "Template für Kategorie z.B. CDs"
 
 @app.route("/shop/item/<id>")
-def shopi():
+def shopi(id):
+    cursor = mysql.connection.cursor()
+    sql = '''SELECT Name, Interpret FROM mydb.cd Where idCD = "''' \
+                + id + '"'     
+    cursor.execute(sql)
+    result = cursor.fetchone()
+    name = result[0]
+    interpret = result[1]
     return "Template für einzelnen Artikel"
 
 @app.route("/shop/warenkorb/")
