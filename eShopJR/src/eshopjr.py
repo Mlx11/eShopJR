@@ -83,7 +83,7 @@ def shopw():
     #session['warenkorb'] = [[1, 'Kühe machen mühe'],[2, "Hallo Muh"]]
     try:
         name = session['username']
-        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
+        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'],name=name)
     except:
         return redirect(url_for('mustlogin'))
 
@@ -130,7 +130,7 @@ def buy(id):
         w.append([id, name, price])
         session['warenkorb'] = w
         session['saldo'] += price
-        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
+        return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'], name=session['username'])
     except:
         return redirect(url_for('mustlogin'))
     
