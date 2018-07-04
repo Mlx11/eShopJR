@@ -14,7 +14,9 @@ app.config['MYSQL_DB'] = 'mydb'
 app.config['MYSQL_HOST'] = 'localhost'
 mysql = MySQL(app)
 
-
+@app.route("/about/")
+def about():
+    return render_template('about.html')
 
 @app.route("/")
 def front():

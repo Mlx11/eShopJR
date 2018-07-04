@@ -11,6 +11,13 @@ font-style: none;
 text-decoration: none;    
 }
 
+#aboutText{
+    margin-top: 30px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #wrapper{width:1000px;
          height: 5000px;
 margin-left:200px;
