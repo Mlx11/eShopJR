@@ -28,7 +28,16 @@ text-decoration: none;
 background-color: white;
 }
 
-	
+.navel{
+    font-size: smaller;
+    margin-left: 40px;
+}
+
+#navuber{
+    margin-left: 40px;
+    float: left;
+}
+
 #Headline{
 height:30px;
 margin:0px;
@@ -72,7 +81,7 @@ width:200px;
 margin:30px;
 position:static;
 float: left;
-text-align: center;
+text-align: left;
 border-style:solid;
 background-color: white;
 }

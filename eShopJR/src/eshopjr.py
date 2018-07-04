@@ -17,25 +17,36 @@ mysql = MySQL(app)
   
 @app.route('/bestellunggesendet/', methods=['GET', 'POST'])
 def bestgut():
-    if request.method == 'POST':
-        name = request.form['username']
-        cursor = mysql.connection.cursor()
-        sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
-                 + name + '"'
-        cursor.execute(sql)
-        result = cursor.fetchone()
-        password = result[0]
-        if password == request.form['password']:
-            print("loggin correct")
-            session['username'] = name
-            session['warenkorb'] = []
-            session['saldo'] = 0
-            a = getArticles()
-            return render_template('bestellunggut.html')
-        else:
-            return redirect(url_for('shopw'))
+    try:
+        if request.method == 'POST':
+            name = request.form['username']
+            cursor = mysql.connection.cursor()
+            sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
+                     + name + '"'
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            password = result[0]
+            if password == request.form['password']:
+                print("loggin correct")
+                session['username'] = name
+                session['warenkorb'] = []
+                session['saldo'] = 0
+                a = getArticles()
+                return render_template('bestellunggut.html')
+            else:
+                return redirect(url_for('shopw'))
+    except:
+        return redirect(url_for('loginfailed'))
+   
         
-        
+@app.route("/mustlogin/")
+def mustlogin():
+    return render_template('mustlogin.html')
+
+@app.route("/loginfailed/")
+def loginfailed():
+    return render_template('loginfailed.html')
+
 @app.route("/about/")
 def about():
     return render_template('about.html')
@@ -74,7 +85,7 @@ def shopw():
         name = session['username']
         return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
     except:
-        return "<h1>You must be logged in to view this</h1><a href='/shop/login'>login</a>"
+        return redirect(url_for('mustlogin'))
 
 @app.route("/shop/login/")
 def shop():
@@ -83,24 +94,27 @@ def shop():
 
 @app.route('/loggedIn', methods=['GET', 'POST'])
 def logingin():
-    if request.method == 'POST':
-        name = request.form['username']
-        cursor = mysql.connection.cursor()
-        sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
-                 + name + '"'
-        cursor.execute(sql)
-        result = cursor.fetchone()
-        password = result[0]
-        if password == request.form['password']:
-            print("loggin correct")
-            session['username'] = name
-            session['warenkorb'] = []
-            session['saldo'] = 0
-            a = getArticles()
-            return render_template('S1.html', articles=a)
-        else:
-            print("nope")
-            return render_template('login.html')
+    try:
+        if request.method == 'POST':
+            name = request.form['username']
+            cursor = mysql.connection.cursor()
+            sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
+                     + name + '"'
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            password = result[0]
+            if password == request.form['password']:
+                print("loggin correct")
+                session['username'] = name
+                session['warenkorb'] = []
+                session['saldo'] = 0
+                a = getArticles()
+                return render_template('S1.html', articles=a)
+            else:
+                print("nope")
+                return render_template('login.html')
+    except:
+        return redirect(url_for('loginfailed'))
             
 @app.route('/shop/buy/<id>')           
 def buy(id):
@@ -118,7 +132,7 @@ def buy(id):
         session['saldo'] += price
         return render_template("warenkorb.html", articles=session['warenkorb'], saldo=session['saldo'])
     except:
-        return "<h1>You must be logged in to buy</h1><a href='/shop/login'>login</a>"
+        return redirect(url_for('mustlogin'))
     
 def getArticles():
     cursor = mysql.connection.cursor()

@@ -15,7 +15,7 @@
 			<div id="Headline">
                 <a href="/shop"><img src="../static/JR.png/" alt="Logo"></a>
 				<a id= "about" href="/about/">about</a>
-				<a id= "contact" href="/contact/">contact</a>
+				<a id= "contact"  href="/contact/">contact</a>
 				<a id= "login" href="/shop/login/">login</a>
 				<a id= "Warenkorb" href="/shop/warenkorb/">
 				<img src="../static/cart.png" alt="Warenkorbimage" style="width:20px;height:20px;border:0px">
@@ -25,9 +25,13 @@
 				<img src="../static/Frontpage2.jpg/" alt="Röthlisberger Bild" style="width:1000px;height:300px;border:0px">
 			</div>
 			<div id="navigation">
-				<p> Kategorien </p>
-				<a id= "CD" href="url">CD</a> <br />
-				<a id= "single" href="url">Single</a>
+				<p id="navuber"> Kategorien </p>
+				<a id= "CD" class="navel" href="/">CD</a> <br />
+				<a id= "Single" class="navel" href="/">Single</a>
+                <a id= "Interpreten" class="navel" href="/">Interpreten</a>
+                <a id= "Autogramme" class="navel" href="/">Autogramme</a>
+                <a id= "Kühe" class="navel" href="/">Kühe</a>
+                <a id= "merch" class="navel" href="/">Merchandise</a>
 			</div>
 			<div id="Einträge">
                 {% for i in range(10) %}
