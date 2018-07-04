@@ -2,7 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from flask import Flask, session, render_template, request, url_for
+from flask import Flask, session, render_template, request, url_for, redirect
 from flask_mysqldb import MySQL
 import random
 
@@ -14,9 +14,35 @@ app.config['MYSQL_DB'] = 'mydb'
 app.config['MYSQL_HOST'] = 'localhost'
 mysql = MySQL(app)
 
+  
+@app.route('/bestellunggesendet/', methods=['GET', 'POST'])
+def bestgut():
+    if request.method == 'POST':
+        name = request.form['username']
+        cursor = mysql.connection.cursor()
+        sql = '''SELECT password FROM mydb.kunde WHERE username = "''' \
+                 + name + '"'
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        password = result[0]
+        if password == request.form['password']:
+            print("loggin correct")
+            session['username'] = name
+            session['warenkorb'] = []
+            session['saldo'] = 0
+            a = getArticles()
+            return render_template('bestellunggut.html')
+        else:
+            return redirect(url_for('shopw'))
+        
+        
 @app.route("/about/")
 def about():
     return render_template('about.html')
+
+@app.route("/contact/")
+def contact():
+    return render_template('contact.html')
 
 @app.route("/")
 def front():
