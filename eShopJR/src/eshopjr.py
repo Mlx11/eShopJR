@@ -17,7 +17,8 @@ mysql = MySQL(app)
 
 @app.route("/shop")
 def shopb():
-    return render_template("S1.html")
+    a = getArticles()
+    return render_template("S1.html", articles=a)
 
 @app.route("/shop/category/<category>")
 def shopc():
@@ -29,10 +30,9 @@ def shopi(id):
     sql = '''SELECT Name, Interpret FROM mydb.cd Where idCD = "''' \
                 + id + '"'     
     cursor.execute(sql)
-    result = cursor.fetchall()
-    name = result[0]
-    interpret = result[1]
-    return "Template für einzelnen Artikel mit name und interpret"
+    result = cursor.fetchone()
+    name = str(result[0]) + " bei " + str(result[1])
+    return render_template('Produktbeschreibung.html', name=name, idd=id)
 
 @app.route("/shop/warenkorb/")
 def shopw():
@@ -57,22 +57,38 @@ def logingin():
             print("loggin correct")
             session['username'] = name
             session['warenkorb'] = []
-            return render_template('S1.html')
+            a = getArticles()
+            return render_template('S1.html', articles=a)
         else:
             print("nope")
             return render_template('login.html')
             
-@app.route('/buy/<id>')           
+@app.route('/shop/buy/<id>')           
 def buy(id):
+    try:
+        cursor = mysql.connection.cursor()
+        sql = '''SELECT Name FROM mydb.cd Where idCD = "''' \
+                    + id + '"'     
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        name = result[0]
+        w = session['warenkorb']
+        w.append([id, name])
+        session['warenkorb'] = w
+        return render_template("warenkorb.html", articles=session['warenkorb'])
+    except:
+        return "Error"
+    
+    
+def getArticles():
     cursor = mysql.connection.cursor()
-    sql = '''SELECT Name FROM mydb.cd Where idCD = "''' \
-                + id + '"'     
-    cursor.execute(sql)
-    result = cursor.fetchone()
-    name = result[0]
-    session['warenkorb'].append([id, name])
-
-
+    sql = 'SELECT * FROM mydb.cd;'
+    cursor.execute(sql)        
+    result = cursor.fetchall()
+    print(result)
+    return result
+    
+    
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
     app.run(debug=True)
